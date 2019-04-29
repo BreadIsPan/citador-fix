@@ -79,6 +79,7 @@ var Citador = (() => {
     this.moment            = WebpackModules.findByUniqueProperties(['parseZone']);
     this.initialized       = true;
     this.quoteURL          = 'https://github.com/nirewen/Citador?';
+    this.ClickURL          = 'https://discordapp.com/channels'
     this.CDN_URL           = 'https://cdn.discordapp.com/avatars/';
     this.ASSETS_URL        = 'https://discordapp.com';
 	DiscordClassModules.Messages.messages = WebpackModules.findByUniqueProperties(["messages"])
@@ -200,7 +201,7 @@ var Citador = (() => {
             }
           })
           .on('mouseleave',function() {
-            if ($(this).find('.citar-btn').length == 1)
+            if ($(this).find('.citar-btn').length >= 1)
               $(this).find('.citar-btn').empty().remove();
           });
       }
@@ -310,7 +311,7 @@ var Citador = (() => {
           author: {
             name: msg.nick || author.username,
             icon_url: avatarURL.startsWith(this.CDN_URL) ? avatarURL : `${this.ASSETS_URL}${avatarURL}`,
-            url: `${this.quoteURL}${msgG ? `guild_id=${msgG.id}&` : ''}channel_id=${msgC.id}&message_id=${msg.id}`,
+            url: `${this.ClickURL}/${msgG ? `${msgG.id}` : '@me'}/${msgC.id}/${msg.id}`,
           },
           description: text,
           footer: {
